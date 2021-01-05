@@ -1,0 +1,22 @@
+@import "../../styles/colors.scss";
+
+.inputWrap {
+  margin-top: 16px;
+  display: flex;
+  position: relative;
+  align-items: center;
+
+  input {
+    flex-grow: 1;
+  }
+
+  .status {
+    position: absolute;
+    right: 8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: $primary;
+    cursor: help;
+  }
+}

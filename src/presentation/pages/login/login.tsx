@@ -6,7 +6,9 @@ import Context from '@/presentation/context/form/form-context'
 const Login: React.FC = () => {
   const [state] = useState({
     isLoading: false,
-    mainError: ''
+    mainError: '',
+    emailError: 'Campo obrigatório',
+    passwordError: 'Campo obrigatório'
   })
 
   return (

@@ -24,7 +24,7 @@ const makeSut = (params?: SutParams): SutTypes => {
 describe('Login Component', () => {
   afterEach(cleanup)
 
-  test('Should start with initial state', async () => {
+  test('Should start with initial state', () => {
     const validationError = faker.random.words()
     const { sut } = makeSut({ validationError })
     const errorWrap = sut.getByTestId('error-wrap')
@@ -39,7 +39,7 @@ describe('Login Component', () => {
     expect(passwordStatus.textContent).toBe('🔴')
   })
 
-  test('Should show email error if validation fails', async () => {
+  test('Should show email error if validation fails', () => {
     const validationError = faker.random.words()
     const { sut } = makeSut({ validationError })
     const emailInput = sut.getByTestId('email')
@@ -49,7 +49,7 @@ describe('Login Component', () => {
     expect(emailStatus.textContent).toBe('🔴')
   })
 
-  test('Should show password error if validation fails', async () => {
+  test('Should show password error if validation fails', () => {
     const validationError = faker.random.words()
     const { sut } = makeSut({ validationError })
     const passwordInput = sut.getByTestId('password')
@@ -59,7 +59,7 @@ describe('Login Component', () => {
     expect(passwordStatus.textContent).toBe('🔴')
   })
 
-  test('Should show valid email state if Validation succeeds', async () => {
+  test('Should show valid email state if Validation succeeds', () => {
     const { sut } = makeSut()
     const emailInput = sut.getByTestId('email')
     fireEvent.input(emailInput, { target: { value: faker.internet.email() } })
@@ -68,7 +68,7 @@ describe('Login Component', () => {
     expect(emailStatus.textContent).toBe('🟢')
   })
 
-  test('Should show valid password state if Validation succeeds', async () => {
+  test('Should show valid password state if Validation succeeds', () => {
     const { sut } = makeSut()
     const passwordInput = sut.getByTestId('password')
     fireEvent.input(passwordInput, { target: { value: faker.internet.password() } })
@@ -77,7 +77,7 @@ describe('Login Component', () => {
     expect(passwordStatus.textContent).toBe('🟢')
   })
 
-  test('Should enable submit button if form is valid', async () => {
+  test('Should enable submit button if form is valid', () => {
     const { sut } = makeSut()
     const emailInput = sut.getByTestId('email')
     fireEvent.input(emailInput, { target: { value: faker.internet.email() } })
@@ -85,5 +85,17 @@ describe('Login Component', () => {
     fireEvent.input(passwordInput, { target: { value: faker.internet.password() } })
     const submitButton = sut.getByTestId('submit') as HTMLButtonElement
     expect(submitButton.disabled).toBe(false)
+  })
+
+  test('Should show spinner on submit', () => {
+    const { sut } = makeSut()
+    const emailInput = sut.getByTestId('email')
+    fireEvent.input(emailInput, { target: { value: faker.internet.email() } })
+    const passwordInput = sut.getByTestId('password')
+    fireEvent.input(passwordInput, { target: { value: faker.internet.password() } })
+    const submitButton = sut.getByTestId('submit')
+    fireEvent.click(submitButton)
+    const spinner = sut.getByTestId('spinner')
+    expect(spinner).toBeTruthy()
   })
 })

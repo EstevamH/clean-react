@@ -1,7 +1,9 @@
 {
   "name": "clean-react",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "React project using TDD, Clean Architecture and Typescript",
+  "author": "Estevam Rodrigues",
+  "license": "GNU GPL3",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open",
